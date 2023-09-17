@@ -33,15 +33,20 @@ function App() {
     }
   };
 
+  const handleFocus = (event:React.FocusEvent<HTMLInputElement>) => {
+    // フォーカス時にテキスト全体を選択する
+    event.target.select();
+  };
+
   return (
     <>
       <h1>理論値タイムスケジューラ</h1>
 
-      <Stack direction="row" spacing={2} >
-        <TextField id="deadline" label="deadline" type="time" value={deadline} onChange={(e) => setDeadline(e.target.value)}/>
-        <TextField id="duration" label="duration(min)" type="number" value={duration} onChange={(e) => setDuration(Number(e.target.value))}/>
-        <TextField id="task" label="task" value={task} onChange={(e) => setTask(e.target.value)} />
-        <Button variant="contained" color="primary" onClick={handleAddTask}>add</Button>
+      <Stack direction="row" spacing={1} >
+        <TextField id="deadline" label="dead" type="time" sx={{ width: '30%' }} value={deadline} onChange={(e) => setDeadline(e.target.value)}/>
+        <TextField id="duration" label="min" type="number" sx={{ width: '20%' }} value={duration} InputProps={{onFocus: handleFocus}} onChange={(e) => setDuration(Number(e.target.value))}/>
+        <TextField id="task" label="task" type='string' sx={{ width: '40%' }} value={task} onChange={(e) => setTask(e.target.value)} />
+        <Button variant="contained" color="primary" sx={{ width: '10%' }} onClick={handleAddTask}>add</Button>
       </Stack>
       
       <HorizontalLine />
